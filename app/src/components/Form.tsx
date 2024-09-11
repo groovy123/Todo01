@@ -2,13 +2,8 @@ import { Button, FormControl, FormControlLabel, FormGroup, Grid2 as Grid, InputL
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from "dayjs";
-import 'dayjs/locale/ja';
 import { ChangeEvent, useState } from "react";
-import { TaskRow } from "../constants/Types";
-import { Callback } from "../logics/Callback";
-
-// dyajs plugins
-dayjs.locale('ja');
+import { AddRowAction } from "./MainPage";
 
 type FormValues = {
     title: string,
@@ -23,7 +18,7 @@ function parseInt(val: string | number) {
 }
 
 export type Param = {
-    callback: Callback<TaskRow>,
+    addRowAction: AddRowAction
 }
 
 export default function Form(param: Param) {
@@ -39,14 +34,16 @@ export default function Form(param: Param) {
     const handleChangeInterval = (evt: SelectChangeEvent<typeof values.interval>) => setValues({ ...values, interval: parseInt(evt.target.value) });
     const handleChangeNotify = (evt: ChangeEvent<HTMLInputElement>) => setValues({ ...values, isNotify: evt.target.checked });
     const handleClickAddRow = () => {
-        param.callback.notify({
-            id: 0,
-            title: values.title,
-            date: values.date?.toDate() ?? new Date(),
-            notify: values.isNotify,
-            notifyInterval: values.interval,
-            status: "READY",
-        });
+        if (param.addRowAction.addRow) {
+            param.addRowAction.addRow({
+                id: 0,
+                title: values.title,
+                date: values.date?.toDate() ?? dayjs().toDate(),
+                notify: values.isNotify,
+                notifyInterval: values.interval,
+                status: "READY",
+            });    
+        }
     };
 
     return (

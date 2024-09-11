@@ -1,6 +1,11 @@
 import "./App.css";
-import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { MainPage } from "./components/MainPage";
+import dayjs from "dayjs";
+import 'dayjs/locale/ja';
+
+// dyajs plugins
+dayjs.locale('ja');
 
 const darkTheme = createTheme({
   palette: {

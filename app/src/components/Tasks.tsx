@@ -5,11 +5,12 @@ import { DataGrid, GridColDef, GridRenderCellParams, GridRowSelectionModel } fro
 import { useEffect, useState } from 'react';
 import { TASK_STATUS, TaskStatusKey } from '../constants/Constants';
 import { TaskRow as Row } from '../constants/Types';
-import { Callback } from '../logics/Callback';
 import { addTask, deleteTask, initIndexDb, listTasks } from '../logics/LocalStrageAsync';
+import dayjs from 'dayjs';
+import { AddRowAction } from './MainPage';
 
 const columns: GridColDef[] = [
-    { field: 'date', headerName: 'Date', type: 'dateTime', width: 130 },
+    { field: 'date', headerName: 'Date', type: 'dateTime', width: 130, valueFormatter: (value?: Date) => { return dayjs(value).format('YYYY/MM/DD HH:mm') }},
     { field: 'title', headerName: 'Title', width: 200 },
     { field: 'notify', headerName: 'Notify', width: 90, renderCell: renderNotify, },
     { field: 'notifyInterval', headerName: 'Interval', width: 90 },
@@ -51,7 +52,7 @@ function renderStatus(props: GridRenderCellParams) {
 export type addRow = (row: Row) => void;
 
 export type Param = {
-    callback: Callback<addRow>,
+    addRowAction: AddRowAction,
 }
 
 export default function Tasks(param: Param) {
@@ -92,7 +93,7 @@ export default function Tasks(param: Param) {
             .then(() => { return listTasks() })
             .then((_) => { setRows((prevRows) => [...prevRows, row]) });
     };
-    param.callback.notify(addRow);
+    param.addRowAction.addRow = addRow;
 
     // Dialog
     const [open, setOpen] = useState(false);
