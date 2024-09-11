@@ -9,10 +9,10 @@ import { Callback } from '../logics/Callback';
 import { addTask, deleteTask, initIndexDb, listTasks } from '../logics/LocalStrageAsync';
 
 const columns: GridColDef[] = [
-    { field: 'date', headerName: 'Date', type: 'dateTime', width: 150 },
-    { field: 'title', headerName: 'Title', width: 400 },
-    { field: 'notify', headerName: 'Notify', width: 100, renderCell: renderNotify, },
-    { field: 'notifyInterval', headerName: 'Interval', width: 100 },
+    { field: 'date', headerName: 'Date', type: 'dateTime', width: 130 },
+    { field: 'title', headerName: 'Title', width: 200 },
+    { field: 'notify', headerName: 'Notify', width: 90, renderCell: renderNotify, },
+    { field: 'notifyInterval', headerName: 'Interval', width: 90 },
     { field: 'status', headerName: 'Status', width: 150, renderCell: renderStatus, },
 ];
 
@@ -115,7 +115,7 @@ export default function Tasks(param: Param) {
                         columns={columns}
                         onRowSelectionModelChange={handleRowSelected}         
                         initialState={{
-                            pagination: { paginationModel: { pageSize: 10 } },
+                            pagination: { paginationModel: { pageSize: 5 } },
                         }}           
                         pageSizeOptions={[5, 10, 25]}
                     />

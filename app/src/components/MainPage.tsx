@@ -34,9 +34,6 @@ export function MainPage() {
                 <Paper sx={{ padding: 2, mt: 2, flexGrow: 1 }}>
                     <Tasks callback={taskCallback} />
                 </Paper>
-                <Box sx={{ padding: 2, mt: 2, mb: 2, height: '100px', backgroundColor: 'green' }}>
-                    <Typography>aaa</Typography>
-                </Box>
             </Box>
         </>
     );

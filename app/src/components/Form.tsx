@@ -63,12 +63,12 @@ export default function Form(param: Param) {
                         onChange={handleChangeDate}
                     />
                 </Grid>
-                <Grid size={{ xs: 2, md: 2 }}>
+                <Grid size={{ xs: 3, md: 3 }}>
                     <FormGroup>
                         <FormControlLabel control={<Switch checked={values.isNotify} onChange={handleChangeNotify} />} label="繰り返し" />
                     </FormGroup>
                 </Grid>
-                <Grid size={{ xs: 4, md: 4 }}>
+                <Grid size={{ xs: 3, md: 3 }}>
                     <FormControl fullWidth disabled={!values.isNotify}>
                         <InputLabel id="demo-simple-select-label">繰り返し間隔</InputLabel>
                         <Select

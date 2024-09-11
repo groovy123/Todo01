@@ -11,9 +11,12 @@
   "app": {
     "windows": [
       {
-        "title": "todo-app",
+        "title": "Todo管理",
+        "dragDropEnabled": false,
+        "fullscreen": false,
+        "maximizable": false,
         "width": 800,
-        "height": 600
+        "height": 650
       }
     ],
     "security": {
